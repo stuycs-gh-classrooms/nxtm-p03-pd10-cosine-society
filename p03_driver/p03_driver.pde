@@ -23,27 +23,28 @@ boolean[] toggles = new boolean[7];
 void setup() {
   size(600, 400);
   makeOrbs(false);
-  
-  toggles[MOVING] = true; 
-  toggles[BOUNCE] = true; 
-  toggles[GRAVITY] = true; 
+
+  toggles[MOVING] = true;
+  toggles[BOUNCE] = true;
+  toggles[GRAVITY] = true;
 }
 
 void draw() {
-  background(255); 
+  background(255);
+  drawLines();
   displayOrbs();
-  
+
   if (toggles[MOVING]) {
     applyForces();
+
+    for (int i = 0; i < numOrbs; i++) {
+      orbs[i].move(toggles[BOUNCE]);
+      orbs[i].display();
+    }
   }
-  
-  for (int i = 0; i < numOrbs; i++){
-    orbs[i].move(toggles[BOUNCE]);
-    orbs[i].display();
-  }
-  drawMenu(); 
+  drawMenu();
   // maybe drawing a line between the orbs?
-  }
+}
 
 void makeOrbs(boolean ordered) {
   orbs = new Orb[numOrbs];
@@ -92,6 +93,24 @@ void applyForces() {
     }
   }
 }
+
+void drawLines() {
+  if (toggles[SPRING]) {
+    for (int i = 0; i < numOrbs; i++) {
+      for (int j = 0; j < numOrbs; j++) {
+        if (i == j) continue; // skip self
+        if (dist(orbs[i].center.x, orbs[i].center.y, orbs[j].center.x, orbs[j].center.y) < springLen + 50) {
+          stroke(#71b77d);
+        } else if (dist(orbs[i].center.x, orbs[i].center.y, orbs[j].center.x, orbs[j].center.y) > springLen - 50) {
+          stroke(#ff52e3);
+        } else {
+          stroke(0, 0, 0);
+        }
+        line(orbs[i].center.x, orbs[i].center.y, orbs[j].center.x, orbs[j].center.y);
+      }
+    }
+  }
+} // drawLines
 
 // Set the current simulation mode and turn off all others
 void setMode(int m) {
