@@ -5,7 +5,7 @@
 ## Thinker0: Sulakshana Reddy
 ## Thinker1: Nabiha Islam
 
-Friends and thinkers! Apologies, nothing to review here- we'll have something up soon.
+
 ---
 
 This project will be completed in phases. The first phase will be to work on this document. Use github-flavoured markdown. (For more markdown help [click here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) or [here](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) )
